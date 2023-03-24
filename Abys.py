@@ -911,7 +911,7 @@ async def foray(event):
 async def start_script():
     entity4 = await clientb.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await clientb.send_message(CHAT_WARS, "/inv")
+    await clientb.send_message(CHAT_WARS, '🏅Me')
     entity2 = await clientb.get_entity("t.me/monsters_not_found")
     await tools.noisy_sleep(10, 5)
     await clientb.send_message(MONSTERS_NOT_FOUND, "/me")
@@ -1150,7 +1150,7 @@ async def mob_report_handler(event):
 async def start_script():
     entity4 = await clientc.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await clientc.send_message(CHAT_WARS, "/inv")
+    await clientc.send_message(CHAT_WARS, '🏅Me')
     await tools.noisy_sleep(10, 5)
     entity2 = await clientc.get_input_entity("t.me/monsters_not_found")
     await clientc.send_message(MONSTERS_NOT_FOUND, "/me")
@@ -1387,7 +1387,7 @@ async def mob_report_handler(event):
 async def start_script():
     entity4 = await clientd.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await clientd.send_message(CHAT_WARS, "/inv")
+    await clientd.send_message(CHAT_WARS, '🏅Me')
     entity2 = await clientd.get_entity("t.me/monsters_not_found")
     await clientd.send_message(MONSTERS_NOT_FOUND, "/me")
 
@@ -1682,7 +1682,7 @@ async def mob_report_handler(event):
 async def start_script():
     entity4 = await cliente.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await cliente.send_message(CHAT_WARS, "/inv")
+    await cliente.send_message(CHAT_WARS, '🏅Me')
     entity2 = await cliente.get_entity("t.me/control_witse")
     await tools.noisy_sleep(10, 5)
     await cliente.send_message(control_witse, "Im here")
@@ -1939,7 +1939,7 @@ async def mob_report_handler(event):
 async def start_script():
     entity4 = await clientf.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await clientf.send_message(CHAT_WARS, "/inv")
+    await clientf.send_message(CHAT_WARS, '🏅Me')
     entity2 = await clientf.get_entity("t.me/monsters_not_found")
     await clientf.send_message(MONSTERS_NOT_FOUND, "/me")
 
@@ -2201,7 +2201,7 @@ async def foray(event):
 async def start_script():
     entity4 = await clientg.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await clientg.send_message(CHAT_WARS, "/inv")
+    await clientg.send_message(CHAT_WARS, '🏅Me')
     entity2 = await clientg.get_entity(control_wadewilson)
     await clientg.send_message(control_wadewilson, "Im here")
 
@@ -2274,9 +2274,7 @@ async def set_orderh():
 
 @clienth.on(events.NewMessage(chats=order_castle))
 async def sets_order_from_channel(event):
-    global rangerH
-    if not rangerH:
-        rangerH = True
+    if not ranger:
         global targeth
         targeth = event.message
         await tools.noisy_sleep(600, 30)
@@ -2290,11 +2288,10 @@ async def sets_order_from_channel(event):
 async def report():
     global targeth
     global tactics
-    global rangerH
+    
     targeth = '/ga_def'
     tactics = '/tactics_highnest'
-    rangerH = False
-
+    
 
 # HIDDEN LOCATIONS #
 @clienth.on(events.NewMessage(chats=CHAT_WARS, incoming=True, pattern='.*You found hidden*'))
@@ -2773,7 +2770,8 @@ async def mob_report_handler(event):
 async def start_script():
     entity4 = await clienti.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await clienti.send_message(CHAT_WARS, "/inv")
+    await clienti.send_message(CHAT_WARS, '🏅Me')
+    await tools.noisy_sleep(10, 5)
     entity2 = await clienti.get_entity(PeerChat(control_sora))
     await clienti.send_message(control_sora, "Im here")
     entity1 = await clienti.get_entity("t.me/monsters_not_found")
@@ -2950,7 +2948,7 @@ async def foray(event):
 async def start_script():
     entity4 = await clientj.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await clientj.send_message(CHAT_WARS, "/inv")
+    await clientj.send_message(CHAT_WARS, '🏅Me')
     entity2 = await clientj.get_entity(PeerChat(control_claudita))
     await clientj.send_message(control_claudita, "Im here")
 
@@ -3412,7 +3410,7 @@ async def mob_report_handler(event):
 async def start_script():
     entity4 = await clientm.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await clientm.send_message(CHAT_WARS, "/inv")
+    await clientm.send_message(CHAT_WARS, '🏅Me')
     entity2 = await clientm.get_entity("t.me/monsters_not_found")
     await clientm.send_message(MONSTERS_NOT_FOUND, "/me")
 
@@ -3637,7 +3635,7 @@ async def foray(event):
 async def start_script():
     entity4 = await cliento.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await cliento.send_message(CHAT_WARS, "/inv")
+    await cliento.send_message(CHAT_WARS, '🏅Me')
     entity2 = await cliento.get_entity("t.me/monsters_not_found")
     await tools.noisy_sleep(10, 5)
     await cliento.send_message(MONSTERS_NOT_FOUND, "/me")
@@ -3874,7 +3872,7 @@ async def foray(event):
 async def start_script():
     entity4 = await clientp.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await clientp.send_message(CHAT_WARS, "/inv")
+    await clientp.send_message(CHAT_WARS, '🏅Me')
     await tools.noisy_sleep(5)
     entity3 = await clientp.get_entity("t.me/monsters_not_found")
     await tools.noisy_sleep(10, 5)
@@ -4116,7 +4114,8 @@ async def foray(event):
 async def start_script():
     entity4 = await clientq.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await clientq.send_message(CHAT_WARS, "/inv")
+    await clientq.send_message(CHAT_WARS, '🏅Me')
+    await tools.noisy_sleep(10, 5)
     entity2 = await clientq.get_entity("t.me/control_manon")
     await tools.noisy_sleep(10, 5)
     await clientq.send_message(control_manu, "Im here!")
@@ -4404,7 +4403,7 @@ async def mob_report_handler(event):
 async def start_script():
     entity4 = await clientr.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await clientr.send_message(CHAT_WARS, "/inv")
+    await clientr.send_message(CHAT_WARS, '🏅Me')
     entity2 = await clientr.get_entity("t.me/control_riodos")
     await tools.noisy_sleep(10, 5)
     await clientr.send_message(control_riodos, "Im here")
@@ -4583,7 +4582,7 @@ async def foray(event):
 async def start_script():
     entity4 = await clients.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await clients.send_message(CHAT_WARS, "/inv")
+    await clients.send_message(CHAT_WARS, '🏅Me')
     entity2 = await clients.get_entity("t.me/control_raspary")
     await clients.send_message(control_raspary, "Im here")
 
@@ -4987,7 +4986,7 @@ async def mob_report_handler(event):
 async def start_script():
     entity4 = await clientu.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await clientu.send_message(CHAT_WARS, "/inv")
+    await clientu.send_message(CHAT_WARS, '🏅Me')
     await tools.noisy_sleep(10, 5)
     entity2 = await clientu.get_entity(PeerChat(control_cirilla))
 
@@ -5263,7 +5262,7 @@ async def mob_report_handler(event):
 async def start_script():
     entity4 = await clientv.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await clientv.send_message(CHAT_WARS, "/inv")
+    await clientv.send_message(CHAT_WARS, '🏅Me')
     entity2 = await clientv.get_entity("t.me/control_hunter")
     await tools.noisy_sleep(10, 5)
     await clientv.send_message(control_hunter, "im here")
@@ -5503,7 +5502,7 @@ async def mob_report_handler(event):
 async def start_script():
     entity4 = await clientw.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await clientw.send_message(CHAT_WARS, "/inv")
+    await clientw.send_message(CHAT_WARS, '🏅Me')
     await tools.noisy_sleep(10, 5)
     entity2 = await clientw.get_entity("t.me/monsters_not_found")
     await tools.noisy_sleep(10, 5)
@@ -5783,7 +5782,7 @@ async def foray(event):
 async def start_script():
     entity4 = await clientx.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await clientx.send_message(CHAT_WARS, "/inv")
+    await clientx.send_message(CHAT_WARS, '🏅Me')
     entity2 = await clientx.get_entity("t.me/control_phantom")
     await tools.noisy_sleep(10, 5)
     await clientx.send_message(control_phantom, "Im here")
@@ -6072,7 +6071,7 @@ async def foray(event):
 async def start_script():
     entity4 = await clienty.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await clienty.send_message(CHAT_WARS, "/inv")
+    await clienty.send_message(CHAT_WARS, '🏅Me')
     await tools.noisy_sleep(10, 5)
     entity2 = await clienty.get_entity("t.me/control_aylin")
     await tools.noisy_sleep(10, 5)
@@ -6334,7 +6333,7 @@ async def mob_report_handler(event):
 async def start_script():
     entity4 = await clientz.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await clientz.send_message(CHAT_WARS, "/inv")
+    await clientz.send_message(CHAT_WARS, '🏅Me')
     await tools.noisy_sleep(10, 5)
     entity2 = await clientz.get_entity("t.me/monsters_not_found")
     await tools.noisy_sleep(10, 5)
@@ -6422,7 +6421,7 @@ async def control_handler(event):
 async def start_script():
     entity4 = await client1.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await client1.send_message(CHAT_WARS, "/inv")
+    await client1.send_message(CHAT_WARS, '🏅Me')
     await tools.noisy_sleep(10, 5)
     entity2 = await client1.get_entity(PeerChat(control_mando))
 
@@ -6696,7 +6695,7 @@ async def mob_report_handler(event):
 async def start_script():
     entity4 = await client2.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await client2.send_message(CHAT_WARS, "/inv")
+    await client2.send_message(CHAT_WARS, '🏅Me')
     await tools.noisy_sleep(10, 5)
     entity2 = await client2.get_entity(PeerChat(control_escanor))
 
@@ -6931,7 +6930,7 @@ async def mob_report_handler(event):
 async def start_script():
     entity4 = await client3.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await client3.send_message(CHAT_WARS, "/inv")
+    await client3.send_message(CHAT_WARS, '🏅Me')
     await tools.noisy_sleep(10, 5)
     entity2 = await client3.get_entity("t.me/monsters_not_found")
     await tools.noisy_sleep(10, 5)
@@ -7168,7 +7167,7 @@ async def mob_report_handler(event):
 async def start_script():
     entity4 = await client4.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await client4.send_message(CHAT_WARS, "/inv")
+    await client4.send_message(CHAT_WARS, '🏅Me')
     await tools.noisy_sleep(10, 5)
     entity2 = await client4.get_entity("t.me/monsters_not_found")
     await tools.noisy_sleep(10, 5)
@@ -7350,7 +7349,7 @@ async def control_handler(event):
 async def start_script():
     entity4 = await client6.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
-    await client6.send_message(CHAT_WARS, "/inv")
+    await client6.send_message(CHAT_WARS, '🏅Me')
     await tools.noisy_sleep(10, 5)
     entity2 = await client6.get_entity(PeerChat(control_loli))
     await tools.noisy_sleep(10, 5)
