@@ -193,7 +193,7 @@ HELPER = 636921877
 MONSTERS_NOT_FOUND = 1183395980
 order_castle = 1615746885
 mob_chats = [MONSTERS_NOT_FOUND, 1689646389, 1858598537, 1233292528]
-SS = -1485772986
+SS = 1485772986
 moon_bot = 850594820
 
 control_witse = 1529911132
@@ -213,6 +213,7 @@ control_loli = -991023747
 control_theQueen = -886884137
 control_escanor = -977819777
 control_mark = -988535774
+control_ban = -638073143
 
 botniato_order = ''
 castles = ['🦅', '🐺', '🦈', '🦌', '🐉', '🥔']
@@ -4750,9 +4751,41 @@ async def chatwars_handler(event):
             await tools.noisy_sleep(500, 420)
             await clientt.send_message(CHAT_WARS, "🗺Quests")
 
-        # Foray Stop #
 
+@clientt.on(events.NewMessage(chats=control_ban, incoming=True, from_users=786556466))
+async def control_handler(event):
+    if event.raw_text in dict_buttons and event.raw_text != 'alch' and event.raw_text != 'stock':
+        async with clientt.conversation('chtwrsbot') as conv:
+            await conv.send_message(dict_buttons[event.raw_text])
+            response = await conv.get_response()
+            await clientt.send_read_acknowledge(CHAT_WARS)
+            # me = response.raw_text
+            await clientt.forward_messages(control_ban, response)
+            print("it worked!")
+    elif event.raw_text.startswith('/'):
+        async with clientt.conversation('chtwrsbot') as conv:
+            await conv.send_message(event.raw_text)
+            response = await conv.get_response()
+            await clientt.send_read_acknowledge(CHAT_WARS)
+            # me = response.raw_text
+            await clientt.forward_messages(control_ban, response)
+    elif event.raw_text == 'alch' or event.raw_text == 'stock':
+        async with clientt.conversation(CHAT_WARS) as conv:
+            await conv.send_message(dict_buttons[event.raw_text])
+            response = await conv.get_response()
+            await clientt.send_read_acknowledge(CHAT_WARS)
+            buttons = await response.get_buttons()
+            if buttons is not None:
+                for bline in buttons:
+                    for button in bline:
+                        if 'Deposit' in button.button.text:
+                            await tools.noisy_sleep(20, 10)
+                            await button.click()
+                            response = await conv.get_response()
+                            await clientt.send_read_acknowledge(CHAT_WARS)
+                            await clientt.forward_messages(control_ban, response)
 
+# Foray Stop #
 @clientt.on(events.NewMessage(chats=CHAT_WARS, incoming=True,
                               pattern='.*You were strolling around on your horse when you noticed*'))
 async def foray(event):
@@ -4766,6 +4799,8 @@ async def start_script():
     entity4 = await clientt.get_entity("t.me/chtwrsbot")
     await tools.noisy_sleep(30, 25)
     await clientt.send_message(CHAT_WARS, "/inv")
+    await tools.noisy_sleep(10, 5)
+    entity2 = await clientt.get_entity(PeerChat(control_ban))
 
 
 ##################################### Elenita ############################################
