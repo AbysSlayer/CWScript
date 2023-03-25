@@ -212,6 +212,7 @@ control_mando = -854799569
 control_loli = -991023747
 control_theQueen = -886884137
 control_escanor = -977819777
+control_mark = -988535774
 
 botniato_order = ''
 castles = ['🦅', '🐺', '🦈', '🦌', '🐉', '🥔']
@@ -1382,6 +1383,39 @@ async def mob_report_handler(event):
         await clientd.send_message(CHAT_WARS, dict_buttons['me'])
         await clientd.send_read_acknowledge(CHAT_WARS)            
 
+@clientd.on(events.NewMessage(chats=control_mark, incoming=True, from_users=786556466))
+async def control_handler(event):
+    if event.raw_text.lower() in dict_buttons and event.raw_text != 'alch' and event.raw_text != 'stock':
+        async with clientd.conversation('chtwrsbot') as conv:
+            await conv.send_message(dict_buttons[event.raw_text.lower()])
+            response = await conv.get_response()
+            await clientd.send_read_acknowledge(CHAT_WARS)
+            # me = response.raw_text
+            await clientd.forward_messages(control_mark, response)
+            print("it worked!")
+    elif event.raw_text.startswith('/'):
+        async with clientd.conversation('chtwrsbot') as conv:
+            await conv.send_message(event.raw_text)
+            response = await conv.get_response()
+            await clientd.send_read_acknowledge(CHAT_WARS)
+            # me = response.raw_text
+            await clientd.forward_messages(control_mark, response)
+    elif event.raw_text.lower() == 'alch' or event.raw_text == 'stock':
+        async with clientd.conversation(CHAT_WARS) as conv:
+            await conv.send_message(dict_buttons[event.raw_text.lower()])
+            response = await conv.get_response()
+            await clientd.send_read_acknowledge(CHAT_WARS)
+            buttons = await response.get_buttons()
+            if buttons is not None:
+                for bline in buttons:
+                    for button in bline:
+                        if 'Deposit' in button.button.text:
+                            await tools.noisy_sleep(20, 10)
+                            await button.click()
+                            response = await conv.get_response()
+                            await clientd.send_read_acknowledge(CHAT_WARS)
+                            await clientd.forward_messages(control_mark, response)
+
 # Start Script #
 @aiocron.crontab(cwc.heroku_reset())
 async def start_script():
@@ -1390,6 +1424,8 @@ async def start_script():
     await clientd.send_message(CHAT_WARS, '🏅Me')
     entity2 = await clientd.get_entity("t.me/monsters_not_found")
     await clientd.send_message(MONSTERS_NOT_FOUND, "/me")
+    await tools.noisy_sleep(10, 5)
+    entity3 = await clientd.get_entity(PeerChat(control_mark))
 
 
 ##################################### Witse ############################################
@@ -7463,7 +7499,7 @@ async def start_script():
 client.start()
 #clientb.start()
 clientc.start()
-#clientd.start()
+clientd.start()
 cliente.start()
 clientf.start()
 clientg.start()
@@ -7476,10 +7512,10 @@ cliento.start()
 clientp.start()
 clientq.start()
 clientr.start()
-#clients.start()
+clients.start()
 clientt.start()
 clientu.start()
-#clientv.start()
+clientv.start()
 #clientw.start()
 clientx.start()
 clienty.start()
