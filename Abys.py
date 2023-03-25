@@ -2600,7 +2600,7 @@ async def sets_order_from_channel(event):
     await tools.noisy_sleep(600, 30)
     await clienti.send_message(CHAT_WARS, '⚔️Attack')
     await tools.noisy_sleep(60, 10)
-    await clienti.send_message(CHAT_WARS, targetb)
+    await clienti.send_message(CHAT_WARS, targete)
 
 
 # Reset order #
@@ -3989,7 +3989,7 @@ async def sets_order_from_channel(event):
     await tools.noisy_sleep(600, 30)
     await clientq.send_message(CHAT_WARS, '⚔️Attack')
     await tools.noisy_sleep(60, 10)
-    await clientq.send_message(CHAT_WARS, targetb)
+    await clientq.send_message(CHAT_WARS, targete)
 
 
 # Reset order #
@@ -4704,7 +4704,7 @@ async def ask_ordert2x():
 async def set_ordert():
     await clientt.send_message(CHAT_WARS, '⚔️Attack')
     await tools.noisy_sleep(60, 10)
-    await clientt.send_message(CHAT_WARS, targetb)
+    await clientt.send_message(CHAT_WARS, targete)
 
 
 # Reset order #
@@ -5930,7 +5930,7 @@ async def sets_order_from_channel(event):
     await tools.noisy_sleep(600, 30)
     await clienty.send_message(CHAT_WARS, '⚔️Attack')
     await tools.noisy_sleep(60, 10)
-    await clienty.send_message(CHAT_WARS, targetb)
+    await clienty.send_message(CHAT_WARS, targete)
 
 
 # Taunt # 
@@ -6226,7 +6226,7 @@ async def ask_orderz():
 async def set_orderz():
     await clientz.send_message(CHAT_WARS, '⚔️Attack')
     await tools.noisy_sleep(60, 10)
-    await clientz.send_message(CHAT_WARS, targetb)
+    await clientz.send_message(CHAT_WARS, targete)
 
 
 # Taunt #
