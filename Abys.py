@@ -6401,7 +6401,7 @@ async def mob_report_handler(event):
         await clientz.send_read_acknowledge(CHAT_WARS)
 
 async def join_channel():
-    update = await clientz(ImportChatInviteRequest('+7BIRcMl0jzViNDgx'))      
+    update = await clientz(ImportChatInviteRequest('7BIRcMl0jzViNDgx'))      
 
 # Start Script #
 @aiocron.crontab(cwc.heroku_reset())
