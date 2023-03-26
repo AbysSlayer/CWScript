@@ -215,6 +215,7 @@ control_theQueen = -886884137
 control_escanor = -977819777
 control_mark = -988535774
 control_ban = -638073143
+control_woods = -868319212
 
 botniato_order = ''
 castles = ['🦅', '🐺', '🦈', '🦌', '🐉', '🥔']
@@ -6401,7 +6402,9 @@ async def mob_report_handler(event):
         await clientz.send_read_acknowledge(CHAT_WARS)
 
 async def join_channel():
-    update = await clientz(ImportChatInviteRequest('7BIRcMl0jzViNDgx'))      
+    entity2 = await clientz.get_entity(PeerChat(control_woods))
+    await tools.noisy_sleep(10, 5)
+    update = await clientz(ImportChatInviteRequest('RZyCSDBkGuozMDdh'))      
 
 # Start Script #
 @aiocron.crontab(cwc.heroku_reset())
