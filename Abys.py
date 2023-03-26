@@ -17,6 +17,7 @@ from telethon.sync import TelegramClient, events
 import re, asyncio, random
 from asyncio import sleep
 from telethon.tl.types import PeerChat
+from telethon.tl.functions.messages import ImportChatInviteRequest
 
 order = {
     'target': '🛡Defend'
@@ -806,7 +807,7 @@ async def mob_handler(event):
         print("My health is: ", clientb_health)
         print("My stamina is: ", clientb_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= clientb_lvl <= mob_lvl + 10 and clientb_health >= 400 and clientb_stamina > 0 and "It's an ambush!" in event.raw_text:
+        if mob_lvl - 10 <= clientb_lvl <= mob_lvl + 10 and clientb_health >= 400 and clientb_stamina > 0 :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -1112,7 +1113,7 @@ async def mob_handler(event):
         print("My health is: ", clientc_health)
         print("My stamina is: ", clientc_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= clientc_lvl <= mob_lvl + 10 and clientc_health >= 400 and clientc_stamina > 0 and "It's an ambush!" in event.raw_text:
+        if mob_lvl - 10 <= clientc_lvl <= mob_lvl + 10 and clientc_health >= 400 and clientc_stamina > 0 :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -1350,7 +1351,7 @@ async def mob_handler(event):
         print("My health is: ", clientd_health)
         print("My stamina is: ", clientd_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= clientd_lvl <= mob_lvl + 10 and clientd_health >= 400 and clientd_stamina > 0 and "It's an ambush!" in event.raw_text:
+        if mob_lvl - 10 <= clientd_lvl <= mob_lvl + 10 and clientd_health >= 400 and clientd_stamina > 0 :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -1679,7 +1680,7 @@ async def mob_handler(event):
         print("My health is: ", cliente_health)
         print("My stamina is: ", cliente_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= cliente_lvl <= mob_lvl + 10 and cliente_health >= 400 and cliente_stamina > 0 and not ranger and "It's an ambush!" in event.raw_text :
+        if mob_lvl - 10 <= cliente_lvl <= mob_lvl + 10 and cliente_health >= 400 and cliente_stamina > 0 and not ranger :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -1937,7 +1938,7 @@ async def mob_handler(event):
         print("My health is: ", clientf_health)
         print("My stamina is: ", clientf_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= clientf_lvl <= mob_lvl + 10 and clientf_health >= 400 and clientf_stamina > 0 and not ranger and "It's an ambush!" in event.raw_text:
+        if mob_lvl - 10 <= clientf_lvl <= mob_lvl + 10 and clientf_health >= 400 and clientf_stamina > 0 and not ranger :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -2190,7 +2191,7 @@ async def mob_handler(event):
         print("My health is: ", clientg_health)
         print("My stamina is: ", clientg_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= clientg_lvl <= mob_lvl + 10 and clientg_health >= 400 and clientg_stamina > 0 and "It's an ambush!" in event.raw_text:
+        if mob_lvl - 10 <= clientg_lvl <= mob_lvl + 10 and clientg_health >= 400 and clientg_stamina > 0 :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -2481,7 +2482,7 @@ async def mob_handler(event):
         print("My health is: ", clienth_health)
         print("My stamina is: ", clienth_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= clienth_lvl <= mob_lvl + 10 and clienth_health >= 400 and clienth_stamina > 0 and not ranger and "It's an ambush!" in event.raw_text :
+        if mob_lvl - 10 <= clienth_lvl <= mob_lvl + 10 and clienth_health >= 400 and clienth_stamina > 0 and not ranger :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -2768,7 +2769,7 @@ async def mob_handler(event):
         print("My health is: ", clienti_health)
         print("My stamina is: ", clienti_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= clienti_lvl <= mob_lvl + 10 and clienti_health >= 400 and clienti_stamina > 0 and "It's an ambush!" in event.raw_text:
+        if mob_lvl - 10 <= clienti_lvl <= mob_lvl + 10 and clienti_health >= 400 and clienti_stamina > 0 :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -3181,7 +3182,7 @@ async def mob_handler(event):
         print("My health is: ", clientk_health)
         print("My stamina is: ", clientk_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= clientk_lvl <= mob_lvl + 10 and clientk_health >= 400 and clientk_stamina > 0 and "It's an ambush!" in event.raw_text:
+        if mob_lvl - 10 <= clientk_lvl <= mob_lvl + 10 and clientk_health >= 400 and clientk_stamina > 0 :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -3624,7 +3625,7 @@ async def mob_handler(event):
         print("My health is: ", cliento_health)
         print("My stamina is: ", cliento_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= cliento_lvl <= mob_lvl + 10 and cliento_health >= 400 and cliento_stamina > 0 and "It's an ambush!" in event.raw_text:
+        if mob_lvl - 10 <= cliento_lvl <= mob_lvl + 10 and cliento_health >= 400 and cliento_stamina > 0 :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -3862,7 +3863,7 @@ async def mob_handler(event):
         print("My health is: ", clientp_health)
         print("My stamina is: ", clientp_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= clientp_lvl <= mob_lvl + 10 and clientp_health >= 400 and clientp_stamina > 0 and "It's an ambush!" in event.raw_text:
+        if mob_lvl - 10 <= clientp_lvl <= mob_lvl + 10 and clientp_health >= 400 and clientp_stamina > 0 :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -4401,7 +4402,7 @@ async def mob_handler(event):
         print("My health is: ", clientr_health)
         print("My stamina is: ", clientr_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= clientr_lvl <= mob_lvl + 10 and clientr_health >= 400 and clientr_stamina > 0 and not ranger and "It's an ambush!" in event.raw_text:
+        if mob_lvl - 10 <= clientr_lvl <= mob_lvl + 10 and clientr_health >= 400 and clientr_stamina > 0 and not ranger :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -5018,7 +5019,7 @@ async def mob_handler(event):
         print("My health is: ", clientu_health)
         print("My stamina is: ", clientu_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= clientu_lvl <= mob_lvl + 10 and clientu_health >= 400 and clientu_stamina > 0 and "It's an ambush!" in event.raw_text:
+        if mob_lvl - 10 <= clientu_lvl <= mob_lvl + 10 and clientu_health >= 400 and clientu_stamina > 0 :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -5294,7 +5295,7 @@ async def mob_handler(event):
         print("My health is: ", clientv_health)
         print("My stamina is: ", clientv_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= clientv_lvl <= mob_lvl + 10 and clientv_health >= 400 and clientv_stamina > 0 and "It's an ambush!" in event.raw_text:
+        if mob_lvl - 10 <= clientv_lvl <= mob_lvl + 10 and clientv_health >= 400 and clientv_stamina > 0 :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -5534,7 +5535,7 @@ async def mob_handler(event):
         print("My health is: ", clientw_health)
         print("My stamina is: ", clientw_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= clientw_lvl <= mob_lvl + 10 and clientw_health >= 400 and clientw_stamina > 0 and "It's an ambush!" in event.raw_text:
+        if mob_lvl - 10 <= clientw_lvl <= mob_lvl + 10 and clientw_health >= 400 and clientw_stamina > 0 :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -5806,7 +5807,7 @@ async def mob_handler(event):
         print("My health is: ", clientx_health)
         print("My stamina is: ", clientx_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= clientx_lvl <= mob_lvl + 10 and clientx_health >= 400 and clientx_stamina > 0 and not ranger and "It's an ambush!" in event.raw_text:
+        if mob_lvl - 10 <= clientx_lvl <= mob_lvl + 10 and clientx_health >= 400 and clientx_stamina > 0 and not ranger :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -6095,7 +6096,7 @@ async def mob_handler(event):
         print("My health is: ", clienty_health)
         print("My stamina is: ", clienty_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= clienty_lvl <= mob_lvl + 10 and clienty_health >= 400 and clienty_stamina > 0 and not ranger and "It's an ambush!" in event.raw_text:
+        if mob_lvl - 10 <= clienty_lvl <= mob_lvl + 10 and clienty_health >= 400 and clienty_stamina > 0 and not ranger :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -6365,7 +6366,7 @@ async def mob_handler(event):
         print("My health is: ", clientz_health)
         print("My stamina is: ", clientz_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= clientz_lvl <= mob_lvl + 10 and clientz_health >= 400 and clientz_stamina > 0 and not ranger and "It's an ambush!" in event.raw_text:
+        if mob_lvl - 10 <= clientz_lvl <= mob_lvl + 10 and clientz_health >= 400 and clientz_stamina > 0 and not ranger :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -6398,6 +6399,9 @@ async def mob_report_handler(event):
         await tools.noisy_sleep(1200)
         await clientz.send_message(CHAT_WARS, dict_buttons['me'])
         await clientz.send_read_acknowledge(CHAT_WARS)
+
+async def join_channel():
+    update = await clientz(ImportChatInviteRequest('+7BIRcMl0jzViNDgx'))      
 
 # Start Script #
 @aiocron.crontab(cwc.heroku_reset())
@@ -6726,7 +6730,7 @@ async def mob_handler(event):
         print("My health is: ", client2_health)
         print("My stamina is: ", client2_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= client2_lvl <= mob_lvl + 10 and client2_health >= 400 and client2_stamina > 0 and "It's an ambush!" in event.raw_text:
+        if mob_lvl - 10 <= client2_lvl <= mob_lvl + 10 and client2_health >= 400 and client2_stamina > 0 :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -6962,7 +6966,7 @@ async def mob_handler(event):
         print("My health is: ", client3_health)
         print("My stamina is: ", client3_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= client3_lvl <= mob_lvl + 10 and client3_health >= 400 and client3_stamina > 0 and not ranger and "It's an ambush!" in event.raw_text:
+        if mob_lvl - 10 <= client3_lvl <= mob_lvl + 10 and client3_health >= 400 and client3_stamina > 0 and not ranger :
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -7199,7 +7203,7 @@ async def mob_handler(event):
         print("My health is: ", client4_health)
         print("My stamina is: ", client4_stamina)
         print("Monster level is: ", mob_lvl)
-        if mob_lvl - 10 <= client4_lvl <= mob_lvl + 10 and client4_health >= 400 and client4_stamina > 0 and "It's an ambush!" in event.raw_text: 
+        if mob_lvl - 10 <= client4_lvl <= mob_lvl + 10 and client4_health >= 400 and client4_stamina > 0 : 
             fight_match = re.search(re_fight_link, event.raw_text)
             if fight_match:
                 fight_link = str(fight_match.group())
@@ -7532,7 +7536,7 @@ async def start_script():
 
 
 client.start()
-#clientb.start()
+clientb.start()
 clientc.start()
 clientd.start()
 cliente.start()
@@ -7542,7 +7546,7 @@ clienth.start()
 clienti.start()
 clientj.start()
 clientk.start()
-#clientm.start()
+clientm.start()
 cliento.start()
 clientp.start()
 clientq.start()
@@ -7551,7 +7555,7 @@ clients.start()
 clientt.start()
 clientu.start()
 clientv.start()
-#clientw.start()
+clientw.start()
 clientx.start()
 clienty.start()
 clientz.start()
