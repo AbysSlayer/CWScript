@@ -482,9 +482,14 @@ where_quest = {'q': None, 'f': 0, 's': 1, 'v': 2, 'foray': 3}
 
 @client.on(events.NewMessage(chats = SS, from_users= moon_bot, incoming= True))
 async def order_getter(event):
-    emoji = re.search(r"\u2694(.*)", event.raw_text)
-    await client.send_message(control_witse, str(emoji))
+    match = re.search(r'⚔️(.)', event.raw_text)
+    emoji = match.group(1)
+    await client.send_message(control_witse, emoji)
 
+@client.on(events.NewMessage(chats = control_manu, incoming = True))
+async def mobs(event):
+    if 'You met some hostile creatures' in event.raw_text:
+        await client.forward_messages(MONSTERS_NOT_FOUND, event.message)
     
 
 
@@ -6400,11 +6405,7 @@ async def mob_report_handler(event):
         await tools.noisy_sleep(1200)
         await clientz.send_message(CHAT_WARS, dict_buttons['me'])
         await clientz.send_read_acknowledge(CHAT_WARS)
-
-async def join_channel():
-    entity2 = await clientz.get_entity(PeerChat(control_woods))
-    await tools.noisy_sleep(10, 5)
-    update = await clientz(ImportChatInviteRequest('RZyCSDBkGuozMDdh'))      
+          
 
 # Start Script #
 @aiocron.crontab(cwc.heroku_reset())
