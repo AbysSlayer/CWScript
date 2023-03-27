@@ -7540,7 +7540,7 @@ async def start_script():
 
 
 client.start()
-clientb.start()
+#clientb.start()
 clientc.start()
 clientd.start()
 cliente.start()
