@@ -319,7 +319,7 @@ clientt = TelegramClient("esternocleidomastoideo_derecho", 10567128, "83047c6de0
 clientu = TelegramClient("Elenits03", 11366741, "ccd6fa0dcda39abe56cd5de58aa95d7d")
 clientv = TelegramClient("h5nter", 13877560, "cb65c6399cfe2bb14408ff85f0cdf1da")
 clientw = TelegramClient("Farseer_girl", 16933055, "98f731e98208ce40e86803f12e7f38c1")
-clientx = TelegramClient("PPPhantom", 16790703, "4cb8a8c99c9cfb238e3ea7ca88ca4e95")
+clientx = TelegramClient("Fabian_Pedrosa", 16790703, "4cb8a8c99c9cfb238e3ea7ca88ca4e95")
 clienty = TelegramClient("Aylin_09_12", 17893209, "5b85e786a204846b619604ba65d2cfcd")
 clientz = TelegramClient("WoodProtector", 14327256, "4ec17e86ba362e143b062e78f836aa54")
 client1 = TelegramClient("Mando_OwO", 19131037, "19a7c06e52e92ccb5a9d1a64829067e0")
@@ -506,7 +506,7 @@ async def mobs(event):
 # Rage up #
 
 @client.on(events.NewMessage(chats=order_castle, pattern='.*Rage Up*'))
-async def rage_up(event):
+async def rage_up():
     await client.send_message(CHAT_WARS, "/use_p01")
     await tools.noisy_sleep(60, 30)
     await client.send_message(CHAT_WARS, "/use_p02")
@@ -7540,7 +7540,7 @@ async def start_script():
 
 
 client.start()
-#clientb.start()
+clientb.start()
 clientc.start()
 clientd.start()
 cliente.start()
@@ -7559,8 +7559,8 @@ clients.start()
 clientt.start()
 clientu.start()
 clientv.start()
-#clientw.start()
-#clientx.start()
+clientw.start()
+clientx.start()
 clienty.start()
 clientz.start()
 client1.start()
