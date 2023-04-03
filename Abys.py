@@ -216,6 +216,7 @@ control_escanor = -977819777
 control_mark = -988535774
 control_ban = -638073143
 control_woods = -868319212
+control_kratoz = -903946485
 
 botniato_order = ''
 castles = ['🦅', '🐺', '🦈', '🦌', '🐉', '🥔']
@@ -486,7 +487,7 @@ async def order_getter(event):
     emoji = match.group(1)
     await client.send_message(control_witse, emoji)
 
-@client.on(events.NewMessage(chats = control_manu, incoming = True))
+@client.on(events.NewMessage(chats = [control_manu, control_wadewilson, control_claudita], incoming = True))
 async def mobs(event):
     if 'You met some hostile creatures' in event.raw_text:
         await client.forward_messages(MONSTERS_NOT_FOUND, event.message)
@@ -2088,7 +2089,7 @@ async def location(event):
 # FORBIDDEN MONSTERS #
 @clientg.on(events.NewMessage(chats=CHAT_WARS, incoming=True, pattern='You met some hostile creatures'))
 async def monsters(event):
-    await clientg.forward_messages(PVE, event.message)
+    await clientg.forward_messages(control_wadewilson, event.message)
 
 
 # Hunting #
@@ -6319,6 +6320,39 @@ async def foray(event):
     await tools.noisy_sleep(180, 60)
     await event.click(0)
 
+@clientz.on(events.NewMessage(chats=control_woods, incoming=True, from_users=786556466))
+async def control_handler(event):
+    if event.raw_text.lower() in dict_buttons and event.raw_text != 'alch' and event.raw_text != 'stock':
+        async with clientz.conversation('chtwrsbot') as conv:
+            await conv.send_message(dict_buttons[event.raw_text.lower()])
+            response = await conv.get_response()
+            await clientz.send_read_acknowledge(CHAT_WARS)
+            # me = response.raw_text
+            await clientz.forward_messages(control_woods, response)
+            print("it worked!")
+    elif event.raw_text.startswith('/'):
+        async with clientz.conversation('chtwrsbot') as conv:
+            await conv.send_message(event.raw_text)
+            response = await conv.get_response()
+            await clientz.send_read_acknowledge(CHAT_WARS)
+            # me = response.raw_text
+            await clientz.forward_messages(control_woods, response)
+    elif event.raw_text.lower() == 'alch' or event.raw_text == 'stock':
+        async with clientz.conversation(CHAT_WARS) as conv:
+            await conv.send_message(dict_buttons[event.raw_text.lower()])
+            response = await conv.get_response()
+            await clientz.send_read_acknowledge(CHAT_WARS)
+            buttons = await response.get_buttons()
+            if buttons is not None:
+                for bline in buttons:
+                    for button in bline:
+                        if 'Deposit' in button.button.text:
+                            await tools.noisy_sleep(20, 10)
+                            await button.click()
+                            response = await conv.get_response()
+                            await clientz.send_read_acknowledge(CHAT_WARS)
+                            await clientz.forward_messages(control_woods, response)    
+
 
 @clientz.on(events.NewMessage(chats=CHAT_WARS, incoming=True))
 async def lvl_handler(event):
@@ -6417,6 +6451,8 @@ async def start_script():
     entity2 = await clientz.get_entity("t.me/monsters_not_found")
     await tools.noisy_sleep(10, 5)
     await clientz.send_message(MONSTERS_NOT_FOUND, "/me")
+    await tools.noisy_sleep(10, 5)
+    entity5 = await clientz.get_entity(PeerChat(control_woods))
 
 
 ##################################### Mando ############################################
@@ -6917,6 +6953,39 @@ async def foray(event):
     await tools.noisy_sleep(180, 60)
     await event.click(0)
 
+@client3.on(events.NewMessage(chats=control_kratoz, incoming=True, from_users=786556466))
+async def control_handler(event):
+    if event.raw_text.lower() in dict_buttons and event.raw_text != 'alch' and event.raw_text != 'stock':
+        async with client3.conversation('chtwrsbot') as conv:
+            await conv.send_message(dict_buttons[event.raw_text.lower()])
+            response = await conv.get_response()
+            await client3.send_read_acknowledge(CHAT_WARS)
+            # me = response.raw_text
+            await client3.forward_messages(control_kratoz, response)
+            print("it worked!")
+    elif event.raw_text.startswith('/'):
+        async with client3.conversation('chtwrsbot') as conv:
+            await conv.send_message(event.raw_text)
+            response = await conv.get_response()
+            await client3.send_read_acknowledge(CHAT_WARS)
+            # me = response.raw_text
+            await client3.forward_messages(control_kratoz, response)
+    elif event.raw_text.lower() == 'alch' or event.raw_text == 'stock':
+        async with client3.conversation(CHAT_WARS) as conv:
+            await conv.send_message(dict_buttons[event.raw_text.lower()])
+            response = await conv.get_response()
+            await client3.send_read_acknowledge(CHAT_WARS)
+            buttons = await response.get_buttons()
+            if buttons is not None:
+                for bline in buttons:
+                    for button in bline:
+                        if 'Deposit' in button.button.text:
+                            await tools.noisy_sleep(20, 10)
+                            await button.click()
+                            response = await conv.get_response()
+                            await client3.send_read_acknowledge(CHAT_WARS)
+                            await client3.forward_messages(control_kratoz, response)   
+
 
 @client3.on(events.NewMessage(chats=CHAT_WARS, incoming=True))
 async def lvl_handler(event):
@@ -7014,6 +7083,8 @@ async def start_script():
     entity2 = await client3.get_entity("t.me/monsters_not_found")
     await tools.noisy_sleep(10, 5)
     await client3.send_message(MONSTERS_NOT_FOUND, "/me")
+    await tools.noisy_sleep(10, 5)
+    entity5 = await client3.get_entity(PeerChat(control_kratoz))
 
 
 ##################################### Colmillo ############################################
