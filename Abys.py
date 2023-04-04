@@ -183,7 +183,7 @@ re_fight_link = r'/fight_[A-Za-z0-9]{20}'
 
 dict_buttons = {'me': '🏅Me', 'ff': '▶️Fast fight', 'au': '🛎Auction', 'crafting': '🛠Workshop', 'equi': '🏷Equipment',
                 'alch': '⚗️Alchemy', 'reset': '❌Reset', 'brew': '⚗️Brew', 'stock': '📦Resources', 'roster': '📋Roster',
-                'food': '🍜Food', 'craft': '🛠Craft', 'quest': '🗺Quests', 'tavern': '🍺Have a pint', 'esquire': '⚔️Esquire🛡️', 'Knight': '⚔️'}
+                'food': '🍜Food', 'craft': '🛠Craft', 'quest': '🗺Quests', 'tavern': '🍺Have a pint', 'esquire': '⚔️Esquire🛡', 'Knight': '⚔️'}
 
 UTC_DELAY = 0  # Bc Heroku
 CHAT_WARS = 408101137
