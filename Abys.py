@@ -6351,7 +6351,15 @@ async def control_handler(event):
                             await button.click()
                             response = await conv.get_response()
                             await clientz.send_read_acknowledge(CHAT_WARS)
-                            await clientz.forward_messages(control_woods, response)    
+                            await clientz.forward_messages(control_woods, response)
+    elif event.raw_text.lower() == 'knight':
+        async with clientz.conversation('chtwrsbot') as conv:
+            await conv.send_message('⚔️Knight')
+            response = await conv.get_response()
+            await clientz.send_read_acknowledge(CHAT_WARS)
+            # me = response.raw_text
+            await clientz.forward_messages(control_woods, response)
+                                    
 
 
 @clientz.on(events.NewMessage(chats=CHAT_WARS, incoming=True))
