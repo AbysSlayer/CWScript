@@ -171,6 +171,30 @@ esca_dict = {
     'me_health': 0,
     'me_stamina': 0
 }
+akhil_dict = {
+    'me_lvl': 0,
+    'mob_lvl': 0,
+    'me_health': 0,
+    'me_stamina': 0
+}
+siegfried_dict = {
+    'me_lvl': 0,
+    'mob_lvl': 0,
+    'me_health': 0,
+    'me_stamina': 0
+}
+diarmund_dict = {
+    'me_lvl': 0,
+    'mob_lvl': 0,
+    'me_health': 0,
+    'me_stamina': 0
+}
+tired_dict = {
+    'me_lvl': 0,
+    'mob_lvl': 0,
+    'me_health': 0,
+    'me_stamina': 0
+}
 
 
 
@@ -221,6 +245,10 @@ control_aylwin = -991800540
 control_colmillo = -952571917
 control_elwyn = -982269748
 control_ali = -973688417
+control_akhil = -911838607
+control_siegfried = -922878095
+control_lancer = -908969473
+control_tiredKn = -958033308
 
 botniato_order = ''
 castles = ['🦅', '🐺', '🦈', '🦌', '🐉', '🥔']
@@ -335,6 +363,10 @@ client5 = TelegramClient("TheQueen0912", 19974140, "fe5690a6aea3fcf765efb0569996
 client6 = TelegramClient("g_atk_KNY", 11496203, "5ff8e660851e65c8d118e1669ec3bf36")
 client7 = TelegramClient("Rozzor00_00", 15391481, "cfb505883c139023f4b62b9a4ac94b96")
 client8 = TelegramClient("Dsmf5", 18830655, "77e14cc525872da88e2428b23732b1e5")
+client9 = TelegramClient("III_ClanNazgul", 1371562, "8f6e24635bfb51f83b54c2578ab4501f")
+client10 = TelegramClient("LancerServant", 1182789, "908358f74f82ac4da661a36f855f3b18")
+client11 = TelegramClient("SiegfriedfromAsgard", 1243687, "fab8a3dccd3c54dc5af686dfdbf6a8e7")
+client12 = TelegramClient("acrossNight", 20178477, "141a9f98c3f80f20bfa8d219cb263332")
 
 i = re.compile('🔥, 🎩')
 forest_fire3m = re.compile('🌲Forest 3min 🔥')
@@ -7759,6 +7791,867 @@ async def start_script():
    await tools.noisy_sleep(30, 25)
    await client8.send_message(CHAT_WARS, "/inv")
 
+# Akhil #
+
+@client9.on(events.NewMessage(chats=order_castle))
+async def sets_order_from_channel(event):
+    await tools.noisy_sleep(600, 30)
+    await client9.send_message(CHAT_WARS, '⚔️Attack')
+    await tools.noisy_sleep(60, 10)
+    await client9.send_message(CHAT_WARS, targete)
+
+
+# Reset order #
+@aiocron.crontab(cwc.minutes_after_war(1))
+async def report():
+    global targete
+    global tactics
+    targete = '/ga_def'
+    tactics = '/tactics_highnest'
+    
+
+#send report#
+@aiocron.crontab(cwc.minutes_after_war(15))
+async def send_report():
+    await client9.send_message(CHAT_WARS, '/report')
+
+# HIDDEN LOCATIONS #
+@client9.on(events.NewMessage(chats=CHAT_WARS, incoming=True, pattern='.*You found hidden*'))
+async def location(event):
+    await client9.forward_messages(control_akhil, event.message)
+
+
+# FORBIDDEN MONSTERS #
+@client9.on(events.NewMessage(chats=CHAT_WARS, incoming=True, pattern='You met some hostile creatures'))
+async def monsters(event):
+    await client9.forward_messages(MONSTERS_NOT_FOUND, event.message)
+
+
+# Starts questing #
+
+@aiocron.crontab(cwc.minutes_after_war(5,1))
+async def start_quest():
+   global queste
+   queste = True
+   await tools.noisy_sleep(200,20)
+   await client9.send_message(CHAT_WARS, "🗺Quests")
+
+# Auto quests  #
+@client9.on(events.NewMessage(chats=CHAT_WARS, incoming=True))
+async def chatwars_handler(event):
+   global queste
+   if queste:
+# Perceptive quests #
+        if re.search(i, event.raw_text):
+           await tools.noisy_sleep(10,5)
+        if re.search(valley_fire4m, event.raw_text):
+           await event.click(2)
+        if re.search(valley_fire6m, event.raw_text):
+           await event.click(2)
+        if re.search(swamp_fire4m, event.raw_text):
+           await event.click(1)
+        if re.search(swamp_fire6m, event.raw_text):
+           await event.click(1)
+        if re.search(forest_fire3m, event.raw_text):
+           await event.click(0)
+        if re.search(forest_fire5m, event.raw_text):
+           await event.click(0)
+   else:
+        if re.search(reg_stroll, event.raw_text):
+            random_quest = random.randint(0, 2)
+            await tools.noisy_sleep(40,30)
+            await event.click(random_quest)
+
+   if re.search(reg_quest, event.raw_text):
+      await tools.noisy_sleep(530,420)
+      await client9.send_message(CHAT_WARS, "🗺Quests")
+
+# Foray Stop # 
+@client9.on(events.NewMessage(chats=CHAT_WARS, incoming=True,
+                              pattern='.*You were strolling around on your horse when you noticed*'))
+async def foray(event):
+    await tools.noisy_sleep(180, 60)
+    await event.click(0)
+
+
+@client9.on(events.NewMessage(chats=control_akhil, incoming=True, from_users=786556466))
+async def control_handler(event):
+    if event.raw_text.lower() in dict_buttons and event.raw_text != 'alch' and event.raw_text != 'stock':
+        async with client9.conversation('chtwrsbot') as conv:
+            await conv.send_message(dict_buttons[event.raw_text.lower()])
+            response = await conv.get_response()
+            await client9.send_read_acknowledge(CHAT_WARS)
+            # me = response.raw_text
+            await client9.forward_messages(control_akhil, response)
+            print("it worked!")
+    elif event.raw_text.startswith('/'):
+        async with client9.conversation('chtwrsbot') as conv:
+            await conv.send_message(event.raw_text)
+            response = await conv.get_response()
+            await client9.send_read_acknowledge(CHAT_WARS)
+            # me = response.raw_text
+            await client9.forward_messages(control_akhil, response)
+    elif event.raw_text.lower() == 'alch' or event.raw_text == 'stock':
+        async with client9.conversation(CHAT_WARS) as conv:
+            await conv.send_message(dict_buttons[event.raw_text.lower()])
+            response = await conv.get_response()
+            await client9.send_read_acknowledge(CHAT_WARS)
+            buttons = await response.get_buttons()
+            if buttons is not None:
+                for bline in buttons:
+                    for button in bline:
+                        if 'Deposit' in button.button.text:
+                            await tools.noisy_sleep(20, 10)
+                            await button.click()
+                            response = await conv.get_response()
+                            await client9.send_read_acknowledge(CHAT_WARS)
+                            await client9.forward_messages(control_akhil, response)
+
+
+@client9.on(events.NewMessage(chats=CHAT_WARS, incoming=True))
+async def lvl_handler(event):
+    global awaiting_stamina
+    match = re.search(level_re, event.raw_text)
+    if match:
+        lvl = match.group(1)
+        akhil_dict['me_lvl'] = lvl
+    health_match = re.search(health_re, event.raw_text)
+    if health_match:
+        health = health_match.group(1)
+        akhil_dict['me_health'] = health
+    stamina_match = re.search(stamina_re, event.raw_text)
+    if stamina_match:
+        stamina = stamina_match.group(1)
+        akhil_dict['me_stamina'] = stamina
+        client9_stamina = int(dict_lvl['me_stamina'])
+    if client9_stamina == 0 and awaiting_stamina == False:
+        awaiting_stamina = True
+        async with client9.conversation(CHAT_WARS) as conv:
+            await tools.noisy_sleep(5)
+            await conv.send_message(dict_buttons['me'])
+            response = await conv.get_response
+            result = re.search(r"(Stamina:)(\s)([0-9]+)(\/)([0-9]+)(\s)(⏰)([0-9]+)(min)", response.raw_text)
+            time_left = result.group(8)
+            time = int(time_left)
+            waiting_time = (time * 60) + 120
+            await tools.noisy_sleep(waiting_time)
+            await conv.send_message(dict_buttons['me'])
+            await client9.send_read_acknowledge(CHAT_WARS)
+            awaiting_stamina = False
+    if 'Your result on the battlefield:' in event.raw_text:
+        await client9.forward_messages(control_akhil, event.message)     
+
+@client9.on(events.NewMessage(chats=CHAT_WARS, incoming = True))
+async def report_handler(event):
+    if 'Encounter:' in event.raw_text:
+        await client9.forward_messages(control_akhil, event.message)           
+
+@client9.on(events.NewMessage(chats= MONSTERS_NOT_FOUND, incoming=True, pattern='You met some hostile creatures'))
+async def mob_handler(event):
+    await client9.send_message(CHAT_WARS, dict_buttons['me'])
+    await client9.send_read_acknowledge(CHAT_WARS)
+    match = re.search(mob_lvl_re, event.raw_text)
+    if match:
+        # result = re.search('[0-9]+', event.raw_text)
+        akhil_dict['mob_lvl'] = match.group(1)
+        mob_lvl = int(akhil_dict['mob_lvl'])
+        client9_lvl = int(akhil_dict['me_lvl'])
+        client9_health = int(akhil_dict['me_health'])
+        client9_stamina = int(akhil_dict['me_stamina'])
+        print("My level is: ", client9_lvl)
+        print("My health is: ", client9_health)
+        print("My stamina is: ", client9_stamina)
+        print("Monster level is: ", mob_lvl)
+        if mob_lvl - 10 <= client9_lvl <= mob_lvl + 10 and client9_health >= 400 and client9_stamina > 0 and not ranger :
+            fight_match = re.search(re_fight_link, event.raw_text)
+            if fight_match:
+                fight_link = str(fight_match.group())
+                print("link found")
+                await tools.noisy_sleep(60, 30)
+                await client9.send_message(CHAT_WARS, fight_link)
+                await client9.send_read_acknowledge(CHAT_WARS)
+                print("I can fight it")
+            else:
+                print("link not found")
+
+
+@client9.on(events.NewMessage(chats=CHAT_WARS, incoming=True))
+async def mob_report_handler(event):
+    if 'Congratulations! You are still alive.' in event.raw_text:
+        await client9.send_read_acknowledge(CHAT_WARS)
+        async with client9.conversation(CHAT_WARS) as conv:
+            await tools.noisy_sleep(5)
+            buttons = await event.get_buttons()
+            for bline in buttons:
+                for button in bline:
+                    if 'Report' in button.button.text:
+                        await button.click()
+                        await client9.send_read_acknowledge(CHAT_WARS)
+                        await tools.noisy_sleep(30)
+                        await conv.send_message(dict_buttons['me'])
+                        await client9.send_read_acknowledge(CHAT_WARS)
+                        print('report mob')
+    if 'This is sad but You are nearly dead.' in event.raw_text:
+        await tools.noisy_sleep(1200)
+        await client9.send_message(CHAT_WARS, dict_buttons['me'])
+        await client9.send_read_acknowledge(CHAT_WARS)
+
+
+# Start Script #
+@aiocron.crontab(cwc.heroku_reset())
+async def start_script():
+    entity4 = await client9.get_entity("t.me/chtwrsbot")
+    await tools.noisy_sleep(30, 25)
+    await client9.send_message(CHAT_WARS, '🏅Me')
+    entity2 = await client9.get_entity(PeerChat(control_akhil))
+    await tools.noisy_sleep(10, 5)
+    await client9.send_message(control_akhil, "Im here")
+    await tools.noisy_sleep(10, 5)
+    entity3 = await client9.get_entity("t.me/monsters_not_found")
+    await client9.send_message(MONSTERS_NOT_FOUND, "/me")
+
+# Lancer #
+
+@client10.on(events.NewMessage(chats=order_castle))
+async def sets_order_from_channel(event):
+    await tools.noisy_sleep(600, 30)
+    await client10.send_message(CHAT_WARS, '⚔️Attack')
+    await tools.noisy_sleep(60, 10)
+    await client10.send_message(CHAT_WARS, targete)
+
+
+# Reset order #
+@aiocron.crontab(cwc.minutes_after_war(1))
+async def report():
+    global targete
+    global tactics
+    targete = '/ga_def'
+    tactics = '/tactics_highnest'
+    
+
+#send report#
+@aiocron.crontab(cwc.minutes_after_war(15))
+async def send_report():
+    await client10.send_message(CHAT_WARS, '/report')
+
+# HIDDEN LOCATIONS #
+@client10.on(events.NewMessage(chats=CHAT_WARS, incoming=True, pattern='.*You found hidden*'))
+async def location(event):
+    await client10.forward_messages(control_lancer, event.message)
+
+
+# FORBIDDEN MONSTERS #
+@client10.on(events.NewMessage(chats=CHAT_WARS, incoming=True, pattern='You met some hostile creatures'))
+async def monsters(event):
+    await client10.forward_messages(MONSTERS_NOT_FOUND, event.message)
+
+
+# Starts questing #
+
+@aiocron.crontab(cwc.minutes_after_war(5,1))
+async def start_quest():
+   global queste
+   queste = True
+   await tools.noisy_sleep(200,20)
+   await client10.send_message(CHAT_WARS, "🗺Quests")
+
+# Auto quests  #
+@client10.on(events.NewMessage(chats=CHAT_WARS, incoming=True))
+async def chatwars_handler(event):
+   global queste
+   if queste:
+# Perceptive quests #
+        if re.search(i, event.raw_text):
+           await tools.noisy_sleep(10,5)
+        if re.search(valley_fire4m, event.raw_text):
+           await event.click(2)
+        if re.search(valley_fire6m, event.raw_text):
+           await event.click(2)
+        if re.search(swamp_fire4m, event.raw_text):
+           await event.click(1)
+        if re.search(swamp_fire6m, event.raw_text):
+           await event.click(1)
+        if re.search(forest_fire3m, event.raw_text):
+           await event.click(0)
+        if re.search(forest_fire5m, event.raw_text):
+           await event.click(0)
+   else:
+        if re.search(reg_stroll, event.raw_text):
+            random_quest = random.randint(0, 2)
+            await tools.noisy_sleep(40,30)
+            await event.click(random_quest)
+
+   if re.search(reg_quest, event.raw_text):
+      await tools.noisy_sleep(530,420)
+      await client10.send_message(CHAT_WARS, "🗺Quests")
+
+# Foray Stop # 
+@client10.on(events.NewMessage(chats=CHAT_WARS, incoming=True,
+                              pattern='.*You were strolling around on your horse when you noticed*'))
+async def foray(event):
+    await tools.noisy_sleep(180, 60)
+    await event.click(0)
+
+
+@client10.on(events.NewMessage(chats=control_lancer, incoming=True, from_users=786556466))
+async def control_handler(event):
+    if event.raw_text.lower() in dict_buttons and event.raw_text != 'alch' and event.raw_text != 'stock':
+        async with client10.conversation('chtwrsbot') as conv:
+            await conv.send_message(dict_buttons[event.raw_text.lower()])
+            response = await conv.get_response()
+            await client10.send_read_acknowledge(CHAT_WARS)
+            # me = response.raw_text
+            await client10.forward_messages(control_lancer, response)
+            print("it worked!")
+    elif event.raw_text.startswith('/'):
+        async with client10.conversation('chtwrsbot') as conv:
+            await conv.send_message(event.raw_text)
+            response = await conv.get_response()
+            await client10.send_read_acknowledge(CHAT_WARS)
+            # me = response.raw_text
+            await client10.forward_messages(control_lancer, response)
+    elif event.raw_text.lower() == 'alch' or event.raw_text == 'stock':
+        async with client10.conversation(CHAT_WARS) as conv:
+            await conv.send_message(dict_buttons[event.raw_text.lower()])
+            response = await conv.get_response()
+            await client10.send_read_acknowledge(CHAT_WARS)
+            buttons = await response.get_buttons()
+            if buttons is not None:
+                for bline in buttons:
+                    for button in bline:
+                        if 'Deposit' in button.button.text:
+                            await tools.noisy_sleep(20, 10)
+                            await button.click()
+                            response = await conv.get_response()
+                            await client10.send_read_acknowledge(CHAT_WARS)
+                            await client10.forward_messages(control_lancer, response)
+
+
+@client10.on(events.NewMessage(chats=CHAT_WARS, incoming=True))
+async def lvl_handler(event):
+    global awaiting_stamina
+    match = re.search(level_re, event.raw_text)
+    if match:
+        lvl = match.group(1)
+        siegfried_dict['me_lvl'] = lvl
+    health_match = re.search(health_re, event.raw_text)
+    if health_match:
+        health = health_match.group(1)
+        siegfried_dict['me_health'] = health
+    stamina_match = re.search(stamina_re, event.raw_text)
+    if stamina_match:
+        stamina = stamina_match.group(1)
+        siegfried_dict['me_stamina'] = stamina
+        client10_stamina = int(dict_lvl['me_stamina'])
+    if client10_stamina == 0 and awaiting_stamina == False:
+        awaiting_stamina = True
+        async with client10.conversation(CHAT_WARS) as conv:
+            await tools.noisy_sleep(5)
+            await conv.send_message(dict_buttons['me'])
+            response = await conv.get_response
+            result = re.search(r"(Stamina:)(\s)([0-9]+)(\/)([0-9]+)(\s)(⏰)([0-9]+)(min)", response.raw_text)
+            time_left = result.group(8)
+            time = int(time_left)
+            waiting_time = (time * 60) + 120
+            await tools.noisy_sleep(waiting_time)
+            await conv.send_message(dict_buttons['me'])
+            await client10.send_read_acknowledge(CHAT_WARS)
+            awaiting_stamina = False
+    if 'Your result on the battlefield:' in event.raw_text:
+        await client10.forward_messages(control_lancer, event.message)     
+
+@client10.on(events.NewMessage(chats=CHAT_WARS, incoming = True))
+async def report_handler(event):
+    if 'Encounter:' in event.raw_text:
+        await client10.forward_messages(control_lancer, event.message)           
+
+@client10.on(events.NewMessage(chats= MONSTERS_NOT_FOUND, incoming=True, pattern='You met some hostile creatures'))
+async def mob_handler(event):
+    await client10.send_message(CHAT_WARS, dict_buttons['me'])
+    await client10.send_read_acknowledge(CHAT_WARS)
+    match = re.search(mob_lvl_re, event.raw_text)
+    if match:
+        # result = re.search('[0-9]+', event.raw_text)
+        siegfried_dict['mob_lvl'] = match.group(1)
+        mob_lvl = int(siegfried_dict['mob_lvl'])
+        client10_lvl = int(siegfried_dict['me_lvl'])
+        client10_health = int(siegfried_dict['me_health'])
+        client10_stamina = int(siegfried_dict['me_stamina'])
+        print("My level is: ", client10_lvl)
+        print("My health is: ", client10_health)
+        print("My stamina is: ", client10_stamina)
+        print("Monster level is: ", mob_lvl)
+        if mob_lvl - 10 <= client10_lvl <= mob_lvl + 10 and client10_health >= 400 and client10_stamina > 0 and not ranger :
+            fight_match = re.search(re_fight_link, event.raw_text)
+            if fight_match:
+                fight_link = str(fight_match.group())
+                print("link found")
+                await tools.noisy_sleep(60, 30)
+                await client10.send_message(CHAT_WARS, fight_link)
+                await client10.send_read_acknowledge(CHAT_WARS)
+                print("I can fight it")
+            else:
+                print("link not found")
+
+
+@client10.on(events.NewMessage(chats=CHAT_WARS, incoming=True))
+async def mob_report_handler(event):
+    if 'Congratulations! You are still alive.' in event.raw_text:
+        await client10.send_read_acknowledge(CHAT_WARS)
+        async with client10.conversation(CHAT_WARS) as conv:
+            await tools.noisy_sleep(5)
+            buttons = await event.get_buttons()
+            for bline in buttons:
+                for button in bline:
+                    if 'Report' in button.button.text:
+                        await button.click()
+                        await client10.send_read_acknowledge(CHAT_WARS)
+                        await tools.noisy_sleep(30)
+                        await conv.send_message(dict_buttons['me'])
+                        await client10.send_read_acknowledge(CHAT_WARS)
+                        print('report mob')
+    if 'This is sad but You are nearly dead.' in event.raw_text:
+        await tools.noisy_sleep(1200)
+        await client10.send_message(CHAT_WARS, dict_buttons['me'])
+        await client10.send_read_acknowledge(CHAT_WARS)
+
+
+# Start Script #
+@aiocron.crontab(cwc.heroku_reset())
+async def start_script():
+    entity4 = await client10.get_entity("t.me/chtwrsbot")
+    await tools.noisy_sleep(30, 25)
+    await client10.send_message(CHAT_WARS, '🏅Me')
+    entity2 = await client10.get_entity(PeerChat(control_lancer))
+    await tools.noisy_sleep(10, 5)
+    await client10.send_message(control_lancer, "Im here")
+    await tools.noisy_sleep(10, 5)
+    entity3 = await client10.get_entity("t.me/monsters_not_found")
+    await client10.send_message(MONSTERS_NOT_FOUND, "/me")    
+
+
+# Siegfried #
+
+@client11.on(events.NewMessage(chats=order_castle))
+async def sets_order_from_channel(event):
+    await tools.noisy_sleep(600, 30)
+    await client11.send_message(CHAT_WARS, '⚔️Attack')
+    await tools.noisy_sleep(60, 10)
+    await client11.send_message(CHAT_WARS, targete)
+
+
+# Reset order #
+@aiocron.crontab(cwc.minutes_after_war(1))
+async def report():
+    global targete
+    global tactics
+    targete = '/ga_def'
+    tactics = '/tactics_highnest'
+    
+
+#send report#
+@aiocron.crontab(cwc.minutes_after_war(15))
+async def send_report():
+    await client11.send_message(CHAT_WARS, '/report')
+
+# HIDDEN LOCATIONS #
+@client11.on(events.NewMessage(chats=CHAT_WARS, incoming=True, pattern='.*You found hidden*'))
+async def location(event):
+    await client11.forward_messages(control_siegfried, event.message)
+
+
+# FORBIDDEN MONSTERS #
+@client11.on(events.NewMessage(chats=CHAT_WARS, incoming=True, pattern='You met some hostile creatures'))
+async def monsters(event):
+    await client11.forward_messages(MONSTERS_NOT_FOUND, event.message)
+
+
+# Starts questing #
+
+@aiocron.crontab(cwc.minutes_after_war(5,1))
+async def start_quest():
+   global queste
+   queste = True
+   await tools.noisy_sleep(200,20)
+   await client11.send_message(CHAT_WARS, "🗺Quests")
+
+# Auto quests  #
+@client11.on(events.NewMessage(chats=CHAT_WARS, incoming=True))
+async def chatwars_handler(event):
+   global queste
+   if queste:
+# Perceptive quests #
+        if re.search(i, event.raw_text):
+           await tools.noisy_sleep(10,5)
+        if re.search(valley_fire4m, event.raw_text):
+           await event.click(2)
+        if re.search(valley_fire6m, event.raw_text):
+           await event.click(2)
+        if re.search(swamp_fire4m, event.raw_text):
+           await event.click(1)
+        if re.search(swamp_fire6m, event.raw_text):
+           await event.click(1)
+        if re.search(forest_fire3m, event.raw_text):
+           await event.click(0)
+        if re.search(forest_fire5m, event.raw_text):
+           await event.click(0)
+   else:
+        if re.search(reg_stroll, event.raw_text):
+            random_quest = random.randint(0, 2)
+            await tools.noisy_sleep(40,30)
+            await event.click(random_quest)
+
+   if re.search(reg_quest, event.raw_text):
+      await tools.noisy_sleep(530,420)
+      await client11.send_message(CHAT_WARS, "🗺Quests")
+
+# Foray Stop # 
+@client11.on(events.NewMessage(chats=CHAT_WARS, incoming=True,
+                              pattern='.*You were strolling around on your horse when you noticed*'))
+async def foray(event):
+    await tools.noisy_sleep(180, 60)
+    await event.click(0)
+
+
+@client11.on(events.NewMessage(chats=control_siegfried, incoming=True, from_users=786556466))
+async def control_handler(event):
+    if event.raw_text.lower() in dict_buttons and event.raw_text != 'alch' and event.raw_text != 'stock':
+        async with client11.conversation('chtwrsbot') as conv:
+            await conv.send_message(dict_buttons[event.raw_text.lower()])
+            response = await conv.get_response()
+            await client11.send_read_acknowledge(CHAT_WARS)
+            # me = response.raw_text
+            await client11.forward_messages(control_siegfried, response)
+            print("it worked!")
+    elif event.raw_text.startswith('/'):
+        async with client11.conversation('chtwrsbot') as conv:
+            await conv.send_message(event.raw_text)
+            response = await conv.get_response()
+            await client11.send_read_acknowledge(CHAT_WARS)
+            # me = response.raw_text
+            await client11.forward_messages(control_siegfried, response)
+    elif event.raw_text.lower() == 'alch' or event.raw_text == 'stock':
+        async with client11.conversation(CHAT_WARS) as conv:
+            await conv.send_message(dict_buttons[event.raw_text.lower()])
+            response = await conv.get_response()
+            await client11.send_read_acknowledge(CHAT_WARS)
+            buttons = await response.get_buttons()
+            if buttons is not None:
+                for bline in buttons:
+                    for button in bline:
+                        if 'Deposit' in button.button.text:
+                            await tools.noisy_sleep(20, 10)
+                            await button.click()
+                            response = await conv.get_response()
+                            await client11.send_read_acknowledge(CHAT_WARS)
+                            await client11.forward_messages(control_siegfried, response)
+
+
+@client11.on(events.NewMessage(chats=CHAT_WARS, incoming=True))
+async def lvl_handler(event):
+    global awaiting_stamina
+    match = re.search(level_re, event.raw_text)
+    if match:
+        lvl = match.group(1)
+        diarmund_dict['me_lvl'] = lvl
+    health_match = re.search(health_re, event.raw_text)
+    if health_match:
+        health = health_match.group(1)
+        diarmund_dict['me_health'] = health
+    stamina_match = re.search(stamina_re, event.raw_text)
+    if stamina_match:
+        stamina = stamina_match.group(1)
+        diarmund_dict['me_stamina'] = stamina
+        client11_stamina = int(dict_lvl['me_stamina'])
+    if client11_stamina == 0 and awaiting_stamina == False:
+        awaiting_stamina = True
+        async with client11.conversation(CHAT_WARS) as conv:
+            await tools.noisy_sleep(5)
+            await conv.send_message(dict_buttons['me'])
+            response = await conv.get_response
+            result = re.search(r"(Stamina:)(\s)([0-9]+)(\/)([0-9]+)(\s)(⏰)([0-9]+)(min)", response.raw_text)
+            time_left = result.group(8)
+            time = int(time_left)
+            waiting_time = (time * 60) + 120
+            await tools.noisy_sleep(waiting_time)
+            await conv.send_message(dict_buttons['me'])
+            await client11.send_read_acknowledge(CHAT_WARS)
+            awaiting_stamina = False
+    if 'Your result on the battlefield:' in event.raw_text:
+        await client11.forward_messages(control_siegfried, event.message)     
+
+@client11.on(events.NewMessage(chats=CHAT_WARS, incoming = True))
+async def report_handler(event):
+    if 'Encounter:' in event.raw_text:
+        await client11.forward_messages(control_lancer, event.message)           
+
+@client11.on(events.NewMessage(chats= MONSTERS_NOT_FOUND, incoming=True, pattern='You met some hostile creatures'))
+async def mob_handler(event):
+    await client11.send_message(CHAT_WARS, dict_buttons['me'])
+    await client11.send_read_acknowledge(CHAT_WARS)
+    match = re.search(mob_lvl_re, event.raw_text)
+    if match:
+        # result = re.search('[0-9]+', event.raw_text)
+        diarmund_dict['mob_lvl'] = match.group(1)
+        mob_lvl = int(diarmund_dict['mob_lvl'])
+        client11_lvl = int(diarmund_dict['me_lvl'])
+        client11_health = int(diarmund_dict['me_health'])
+        client11_stamina = int(diarmund_dict['me_stamina'])
+        print("My level is: ", client11_lvl)
+        print("My health is: ", client11_health)
+        print("My stamina is: ", client11_stamina)
+        print("Monster level is: ", mob_lvl)
+        if mob_lvl - 10 <= client11_lvl <= mob_lvl + 10 and client11_health >= 400 and client11_stamina > 0 and not ranger :
+            fight_match = re.search(re_fight_link, event.raw_text)
+            if fight_match:
+                fight_link = str(fight_match.group())
+                print("link found")
+                await tools.noisy_sleep(60, 30)
+                await client11.send_message(CHAT_WARS, fight_link)
+                await client11.send_read_acknowledge(CHAT_WARS)
+                print("I can fight it")
+            else:
+                print("link not found")
+
+
+@client11.on(events.NewMessage(chats=CHAT_WARS, incoming=True))
+async def mob_report_handler(event):
+    if 'Congratulations! You are still alive.' in event.raw_text:
+        await client11.send_read_acknowledge(CHAT_WARS)
+        async with client11.conversation(CHAT_WARS) as conv:
+            await tools.noisy_sleep(5)
+            buttons = await event.get_buttons()
+            for bline in buttons:
+                for button in bline:
+                    if 'Report' in button.button.text:
+                        await button.click()
+                        await client11.send_read_acknowledge(CHAT_WARS)
+                        await tools.noisy_sleep(30)
+                        await conv.send_message(dict_buttons['me'])
+                        await client11.send_read_acknowledge(CHAT_WARS)
+                        print('report mob')
+    if 'This is sad but You are nearly dead.' in event.raw_text:
+        await tools.noisy_sleep(1200)
+        await client11.send_message(CHAT_WARS, dict_buttons['me'])
+        await client11.send_read_acknowledge(CHAT_WARS)
+
+
+# Start Script #
+@aiocron.crontab(cwc.heroku_reset())
+async def start_script():
+    entity4 = await client11.get_entity("t.me/chtwrsbot")
+    await tools.noisy_sleep(30, 25)
+    await client11.send_message(CHAT_WARS, '🏅Me')
+    entity2 = await client11.get_entity(PeerChat(control_siegfried))
+    await tools.noisy_sleep(10, 5)
+    await client11.send_message(control_siegfried, "Im here")
+    await tools.noisy_sleep(10, 5)
+    entity3 = await client11.get_entity("t.me/monsters_not_found")
+    await client11.send_message(MONSTERS_NOT_FOUND, "/me")  
+
+# Tired Knight #
+
+@client12.on(events.NewMessage(chats=order_castle))
+async def sets_order_from_channel(event):
+    await tools.noisy_sleep(600, 30)
+    await client12.send_message(CHAT_WARS, '⚔️Attack')
+    await tools.noisy_sleep(60, 10)
+    await client12.send_message(CHAT_WARS, targete)
+
+
+# Reset order #
+@aiocron.crontab(cwc.minutes_after_war(1))
+async def report():
+    global targete
+    global tactics
+    targete = '/ga_def'
+    tactics = '/tactics_highnest'
+    
+
+#send report#
+@aiocron.crontab(cwc.minutes_after_war(15))
+async def send_report():
+    await client12.send_message(CHAT_WARS, '/report')
+
+# HIDDEN LOCATIONS #
+@client12.on(events.NewMessage(chats=CHAT_WARS, incoming=True, pattern='.*You found hidden*'))
+async def location(event):
+    await client12.forward_messages(control_tiredKn, event.message)
+
+
+# FORBIDDEN MONSTERS #
+@client12.on(events.NewMessage(chats=CHAT_WARS, incoming=True, pattern='You met some hostile creatures'))
+async def monsters(event):
+    await client12.forward_messages(MONSTERS_NOT_FOUND, event.message)
+
+
+# Starts questing #
+
+@aiocron.crontab(cwc.minutes_after_war(5,1))
+async def start_quest():
+   global queste
+   queste = True
+   await tools.noisy_sleep(200,20)
+   await client12.send_message(CHAT_WARS, "🗺Quests")
+
+# Auto quests  #
+@client12.on(events.NewMessage(chats=CHAT_WARS, incoming=True))
+async def chatwars_handler(event):
+   global queste
+   if queste:
+# Perceptive quests #
+        if re.search(i, event.raw_text):
+           await tools.noisy_sleep(10,5)
+        if re.search(valley_fire4m, event.raw_text):
+           await event.click(2)
+        if re.search(valley_fire6m, event.raw_text):
+           await event.click(2)
+        if re.search(swamp_fire4m, event.raw_text):
+           await event.click(1)
+        if re.search(swamp_fire6m, event.raw_text):
+           await event.click(1)
+        if re.search(forest_fire3m, event.raw_text):
+           await event.click(0)
+        if re.search(forest_fire5m, event.raw_text):
+           await event.click(0)
+   else:
+        if re.search(reg_stroll, event.raw_text):
+            random_quest = random.randint(0, 2)
+            await tools.noisy_sleep(40,30)
+            await event.click(random_quest)
+
+   if re.search(reg_quest, event.raw_text):
+      await tools.noisy_sleep(530,420)
+      await client12.send_message(CHAT_WARS, "🗺Quests")
+
+# Foray Stop # 
+@client12.on(events.NewMessage(chats=CHAT_WARS, incoming=True,
+                              pattern='.*You were strolling around on your horse when you noticed*'))
+async def foray(event):
+    await tools.noisy_sleep(180, 60)
+    await event.click(0)
+
+
+@client12.on(events.NewMessage(chats=control_tiredKn, incoming=True, from_users=786556466))
+async def control_handler(event):
+    if event.raw_text.lower() in dict_buttons and event.raw_text != 'alch' and event.raw_text != 'stock':
+        async with client12.conversation('chtwrsbot') as conv:
+            await conv.send_message(dict_buttons[event.raw_text.lower()])
+            response = await conv.get_response()
+            await client12.send_read_acknowledge(CHAT_WARS)
+            # me = response.raw_text
+            await client12.forward_messages(control_tiredKn, response)
+            print("it worked!")
+    elif event.raw_text.startswith('/'):
+        async with client12.conversation('chtwrsbot') as conv:
+            await conv.send_message(event.raw_text)
+            response = await conv.get_response()
+            await client12.send_read_acknowledge(CHAT_WARS)
+            # me = response.raw_text
+            await client12.forward_messages(control_tiredKn, response)
+    elif event.raw_text.lower() == 'alch' or event.raw_text == 'stock':
+        async with client12.conversation(CHAT_WARS) as conv:
+            await conv.send_message(dict_buttons[event.raw_text.lower()])
+            response = await conv.get_response()
+            await client12.send_read_acknowledge(CHAT_WARS)
+            buttons = await response.get_buttons()
+            if buttons is not None:
+                for bline in buttons:
+                    for button in bline:
+                        if 'Deposit' in button.button.text:
+                            await tools.noisy_sleep(20, 10)
+                            await button.click()
+                            response = await conv.get_response()
+                            await client12.send_read_acknowledge(CHAT_WARS)
+                            await client12.forward_messages(control_tiredKn, response)
+
+
+@client12.on(events.NewMessage(chats=CHAT_WARS, incoming=True))
+async def lvl_handler(event):
+    global awaiting_stamina
+    match = re.search(level_re, event.raw_text)
+    if match:
+        lvl = match.group(1)
+        tired_dict['me_lvl'] = lvl
+    health_match = re.search(health_re, event.raw_text)
+    if health_match:
+        health = health_match.group(1)
+        tired_dict['me_health'] = health
+    stamina_match = re.search(stamina_re, event.raw_text)
+    if stamina_match:
+        stamina = stamina_match.group(1)
+        tired_dict['me_stamina'] = stamina
+    if 'Your result on the battlefield:' in event.raw_text:
+        await client12.forward_messages(control_tiredKn, event.message)     
+
+@client12.on(events.NewMessage(chats=CHAT_WARS, incoming = True))
+async def report_handler(event):
+    if 'Encounter:' in event.raw_text:
+        await client12.forward_messages(control_tiredKn, event.message)           
+
+@client12.on(events.NewMessage(chats= MONSTERS_NOT_FOUND, incoming=True, pattern='You met some hostile creatures'))
+async def mob_handler(event):
+    await client12.send_message(CHAT_WARS, dict_buttons['me'])
+    await client12.send_read_acknowledge(CHAT_WARS)
+    match = re.search(mob_lvl_re, event.raw_text)
+    if match:
+        # result = re.search('[0-9]+', event.raw_text)
+        tired_dict['mob_lvl'] = match.group(1)
+        mob_lvl = int(tired_dict['mob_lvl'])
+        client12_lvl = int(tired_dict['me_lvl'])
+        client12_health = int(tired_dict['me_health'])
+        client12_stamina = int(tired_dict['me_stamina'])
+        print("My level is: ", client12_lvl)
+        print("My health is: ", client12_health)
+        print("My stamina is: ", client12_stamina)
+        print("Monster level is: ", mob_lvl)
+        if mob_lvl - 10 <= client12_lvl <= mob_lvl + 10 and client12_health >= 400 and client12_stamina > 0 and not ranger :
+            fight_match = re.search(re_fight_link, event.raw_text)
+            if fight_match:
+                fight_link = str(fight_match.group())
+                print("link found")
+                await tools.noisy_sleep(60, 30)
+                await client12.send_message(CHAT_WARS, fight_link)
+                await client12.send_read_acknowledge(CHAT_WARS)
+                print("I can fight it")
+            else:
+                print("link not found")
+
+
+@client12.on(events.NewMessage(chats=CHAT_WARS, incoming=True))
+async def mob_report_handler(event):
+    if 'Congratulations! You are still alive.' in event.raw_text:
+        await client12.send_read_acknowledge(CHAT_WARS)
+        async with client12.conversation(CHAT_WARS) as conv:
+            await tools.noisy_sleep(5)
+            buttons = await event.get_buttons()
+            for bline in buttons:
+                for button in bline:
+                    if 'Report' in button.button.text:
+                        await button.click()
+                        await client12.send_read_acknowledge(CHAT_WARS)
+                        await tools.noisy_sleep(30)
+                        await conv.send_message(dict_buttons['me'])
+                        await client12.send_read_acknowledge(CHAT_WARS)
+                        print('report mob')
+    if 'This is sad but You are nearly dead.' in event.raw_text:
+        await tools.noisy_sleep(1200)
+        await client12.send_message(CHAT_WARS, dict_buttons['me'])
+        await client12.send_read_acknowledge(CHAT_WARS)
+
+
+# Start Script #
+@aiocron.crontab(cwc.heroku_reset())
+async def start_script():
+    entity4 = await client12.get_entity("t.me/chtwrsbot")
+    await tools.noisy_sleep(30, 25)
+    await client12.send_message(CHAT_WARS, '🏅Me')
+    entity2 = await client12.get_entity(PeerChat(control_tiredKn))
+    await tools.noisy_sleep(10, 5)
+    await client12.send_message(control_tiredKn, "Im here")
+    await tools.noisy_sleep(10, 5)
+    entity3 = await client12.get_entity("t.me/monsters_not_found")
+    await client12.send_message(MONSTERS_NOT_FOUND, "/me")
 
 client.start()
 clientb.start()
@@ -7792,4 +8685,8 @@ client5.start()
 client6.start()
 client7.start()
 client8.start()
+client9.start()
+client10.start()
+client11.start()
+client12.start()
 client.run_until_disconnected()
