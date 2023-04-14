@@ -7848,28 +7848,27 @@ async def chatwars_handler(event):
    if quest9:
 # Perceptive quests #
         if re.search(i, event.raw_text):
-           await tools.noisy_sleep(10,5)
-        if re.search(valley_fire4m, event.raw_text):
-           await event.click(2)
-        if re.search(valley_fire6m, event.raw_text):
-           await event.click(2)
-        if re.search(swamp_fire4m, event.raw_text):
-           await event.click(1)
-        if re.search(swamp_fire6m, event.raw_text):
-           await event.click(1)
-        if re.search(forest_fire3m, event.raw_text):
-           await event.click(0)
-        if re.search(forest_fire5m, event.raw_text):
-           await event.click(0)
-   else:
-        if re.search(reg_stroll, event.raw_text):
-            random_quest = random.randint(0, 2)
-            await tools.noisy_sleep(40,30)
-            await event.click(random_quest)
-
-   if re.search(reg_quest, event.raw_text):
-      await tools.noisy_sleep(530,420)
-      await client9.send_message(CHAT_WARS, "🗺Quests")
+            await tools.noisy_sleep(10,5)
+            if re.search(valley_fire4m, event.raw_text):
+               await event.click(2)
+            if re.search(valley_fire6m, event.raw_text):
+               await event.click(2)
+            if re.search(swamp_fire4m, event.raw_text):
+               await event.click(1)
+            if re.search(swamp_fire6m, event.raw_text):
+               await event.click(1)
+            if re.search(forest_fire3m, event.raw_text):
+               await event.click(0)
+            if re.search(forest_fire5m, event.raw_text):
+               await event.click(0)
+        else:
+            if re.search(reg_stroll, event.raw_text):
+                random_quest = random.randint(0, 2)
+                await tools.noisy_sleep(40,30)
+                await event.click(random_quest)
+        if re.search(reg_quest, event.raw_text):
+            await tools.noisy_sleep(530,420)
+            await client9.send_message(CHAT_WARS, "🗺Quests")
 
 # Foray Stop # 
 @client9.on(events.NewMessage(chats=CHAT_WARS, incoming=True,
@@ -8062,28 +8061,27 @@ async def chatwars_handler(event):
    if quest10:
 # Perceptive quests #
         if re.search(i, event.raw_text):
-           await tools.noisy_sleep(10,5)
-        if re.search(valley_fire4m, event.raw_text):
-           await event.click(2)
-        if re.search(valley_fire6m, event.raw_text):
-           await event.click(2)
-        if re.search(swamp_fire4m, event.raw_text):
-           await event.click(1)
-        if re.search(swamp_fire6m, event.raw_text):
-           await event.click(1)
-        if re.search(forest_fire3m, event.raw_text):
-           await event.click(0)
-        if re.search(forest_fire5m, event.raw_text):
-           await event.click(0)
-   else:
-        if re.search(reg_stroll, event.raw_text):
-            random_quest = random.randint(0, 2)
-            await tools.noisy_sleep(40,30)
-            await event.click(random_quest)
-
-   if re.search(reg_quest, event.raw_text):
-      await tools.noisy_sleep(530,420)
-      await client10.send_message(CHAT_WARS, "🗺Quests")
+            await tools.noisy_sleep(10,5)
+            if re.search(valley_fire4m, event.raw_text):
+               await event.click(2)
+            if re.search(valley_fire6m, event.raw_text):
+               await event.click(2)
+            if re.search(swamp_fire4m, event.raw_text):
+               await event.click(1)
+            if re.search(swamp_fire6m, event.raw_text):
+               await event.click(1)
+            if re.search(forest_fire3m, event.raw_text):
+               await event.click(0)
+            if re.search(forest_fire5m, event.raw_text):
+               await event.click(0)
+        else:
+            if re.search(reg_stroll, event.raw_text):
+                random_quest = random.randint(0, 2)
+                await tools.noisy_sleep(40,30)
+                await event.click(random_quest)
+        if re.search(reg_quest, event.raw_text):
+            await tools.noisy_sleep(530,420)
+            await client10.send_message(CHAT_WARS, "🗺Quests")
 
 # Foray Stop # 
 @client10.on(events.NewMessage(chats=CHAT_WARS, incoming=True,
@@ -8277,28 +8275,27 @@ async def chatwars_handler(event):
    if quest11:
 # Perceptive quests #
         if re.search(i, event.raw_text):
-           await tools.noisy_sleep(10,5)
-        if re.search(valley_fire4m, event.raw_text):
-           await event.click(2)
-        if re.search(valley_fire6m, event.raw_text):
-           await event.click(2)
-        if re.search(swamp_fire4m, event.raw_text):
-           await event.click(1)
-        if re.search(swamp_fire6m, event.raw_text):
-           await event.click(1)
-        if re.search(forest_fire3m, event.raw_text):
-           await event.click(0)
-        if re.search(forest_fire5m, event.raw_text):
-           await event.click(0)
-   else:
-        if re.search(reg_stroll, event.raw_text):
-            random_quest = random.randint(0, 2)
-            await tools.noisy_sleep(40,30)
-            await event.click(random_quest)
-
-   if re.search(reg_quest, event.raw_text):
-      await tools.noisy_sleep(530,420)
-      await client11.send_message(CHAT_WARS, "🗺Quests")
+            await tools.noisy_sleep(10,5)
+            if re.search(valley_fire4m, event.raw_text):
+               await event.click(2)
+            if re.search(valley_fire6m, event.raw_text):
+               await event.click(2)
+            if re.search(swamp_fire4m, event.raw_text):
+               await event.click(1)
+            if re.search(swamp_fire6m, event.raw_text):
+               await event.click(1)
+            if re.search(forest_fire3m, event.raw_text):
+               await event.click(0)
+            if re.search(forest_fire5m, event.raw_text):
+               await event.click(0)
+        else:
+            if re.search(reg_stroll, event.raw_text):
+                random_quest = random.randint(0, 2)
+                await tools.noisy_sleep(40,30)
+                await event.click(random_quest)
+        if re.search(reg_quest, event.raw_text):
+            await tools.noisy_sleep(530,420)
+            await client11.send_message(CHAT_WARS, "🗺Quests")
 
 # Foray Stop # 
 @client11.on(events.NewMessage(chats=CHAT_WARS, incoming=True,
@@ -8491,28 +8488,27 @@ async def chatwars_handler(event):
    if quest12:
 # Perceptive quests #
         if re.search(i, event.raw_text):
-           await tools.noisy_sleep(10,5)
-        if re.search(valley_fire4m, event.raw_text):
-           await event.click(2)
-        if re.search(valley_fire6m, event.raw_text):
-           await event.click(2)
-        if re.search(swamp_fire4m, event.raw_text):
-           await event.click(1)
-        if re.search(swamp_fire6m, event.raw_text):
-           await event.click(1)
-        if re.search(forest_fire3m, event.raw_text):
-           await event.click(0)
-        if re.search(forest_fire5m, event.raw_text):
-           await event.click(0)
-   else:
-        if re.search(reg_stroll, event.raw_text):
-            random_quest = random.randint(0, 2)
-            await tools.noisy_sleep(40,30)
-            await event.click(random_quest)
-
-   if re.search(reg_quest, event.raw_text):
-      await tools.noisy_sleep(530,420)
-      await client12.send_message(CHAT_WARS, "🗺Quests")
+            await tools.noisy_sleep(10,5)
+            if re.search(valley_fire4m, event.raw_text):
+               await event.click(2)
+            if re.search(valley_fire6m, event.raw_text):
+               await event.click(2)
+            if re.search(swamp_fire4m, event.raw_text):
+               await event.click(1)
+            if re.search(swamp_fire6m, event.raw_text):
+               await event.click(1)
+            if re.search(forest_fire3m, event.raw_text):
+               await event.click(0)
+            if re.search(forest_fire5m, event.raw_text):
+               await event.click(0)
+        else:
+            if re.search(reg_stroll, event.raw_text):
+                random_quest = random.randint(0, 2)
+                await tools.noisy_sleep(40,30)
+                await event.click(random_quest)
+        if re.search(reg_quest, event.raw_text):
+            await tools.noisy_sleep(530,420)
+            await client12.send_message(CHAT_WARS, "🗺Quests")
 
 # Foray Stop # 
 @client12.on(events.NewMessage(chats=CHAT_WARS, incoming=True,
