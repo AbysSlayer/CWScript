@@ -330,6 +330,11 @@ quest5 = TRUE
 quest6 = TRUE
 quest7 = TRUE
 quest8 = TRUE
+quest9 = TRUE
+quest10 = TRUE
+quest11 = TRUE
+quest12 = TRUE
+
 
 client = TelegramClient("AbysSlayer", 11887051, "9b0c0c4c2ce5fe50a22a850d819f5b62")
 clientb = TelegramClient("Elwyn_DelBosque", 10062021, "f7f034e7953e342082217bdcb7ec0ee0")
@@ -7831,16 +7836,16 @@ async def monsters(event):
 
 @aiocron.crontab(cwc.minutes_after_war(5,1))
 async def start_quest():
-   global queste
-   queste = True
+   global quest9
+   quest9 = True
    await tools.noisy_sleep(200,20)
    await client9.send_message(CHAT_WARS, "🗺Quests")
 
 # Auto quests  #
 @client9.on(events.NewMessage(chats=CHAT_WARS, incoming=True))
 async def chatwars_handler(event):
-   global queste
-   if queste:
+   global quest9
+   if quest9:
 # Perceptive quests #
         if re.search(i, event.raw_text):
            await tools.noisy_sleep(10,5)
@@ -7939,12 +7944,7 @@ async def lvl_handler(event):
             await client9.send_read_acknowledge(CHAT_WARS)
             awaiting_stamina = False
     if 'Your result on the battlefield:' in event.raw_text:
-        await client9.forward_messages(control_akhil, event.message)     
-
-@client9.on(events.NewMessage(chats=CHAT_WARS, incoming = True))
-async def report_handler(event):
-    if 'Encounter:' in event.raw_text:
-        await client9.forward_messages(control_akhil, event.message)           
+        await client9.forward_messages(control_akhil, event.message)          
 
 @client9.on(events.NewMessage(chats= MONSTERS_NOT_FOUND, incoming=True, pattern='You met some hostile creatures'))
 async def mob_handler(event):
@@ -8050,16 +8050,16 @@ async def monsters(event):
 
 @aiocron.crontab(cwc.minutes_after_war(5,1))
 async def start_quest():
-   global queste
-   queste = True
+   global quest10
+   quest10 = True
    await tools.noisy_sleep(200,20)
    await client10.send_message(CHAT_WARS, "🗺Quests")
 
 # Auto quests  #
 @client10.on(events.NewMessage(chats=CHAT_WARS, incoming=True))
 async def chatwars_handler(event):
-   global queste
-   if queste:
+   global quest10
+   if quest10:
 # Perceptive quests #
         if re.search(i, event.raw_text):
            await tools.noisy_sleep(10,5)
@@ -8158,12 +8158,7 @@ async def lvl_handler(event):
             await client10.send_read_acknowledge(CHAT_WARS)
             awaiting_stamina = False
     if 'Your result on the battlefield:' in event.raw_text:
-        await client10.forward_messages(control_lancer, event.message)     
-
-@client10.on(events.NewMessage(chats=CHAT_WARS, incoming = True))
-async def report_handler(event):
-    if 'Encounter:' in event.raw_text:
-        await client10.forward_messages(control_lancer, event.message)           
+        await client10.forward_messages(control_lancer, event.message)                
 
 @client10.on(events.NewMessage(chats= MONSTERS_NOT_FOUND, incoming=True, pattern='You met some hostile creatures'))
 async def mob_handler(event):
@@ -8270,16 +8265,16 @@ async def monsters(event):
 
 @aiocron.crontab(cwc.minutes_after_war(5,1))
 async def start_quest():
-   global queste
-   queste = True
+   global quest11
+   quest11 = True
    await tools.noisy_sleep(200,20)
    await client11.send_message(CHAT_WARS, "🗺Quests")
 
 # Auto quests  #
 @client11.on(events.NewMessage(chats=CHAT_WARS, incoming=True))
 async def chatwars_handler(event):
-   global queste
-   if queste:
+   global quest11
+   if quest11:
 # Perceptive quests #
         if re.search(i, event.raw_text):
            await tools.noisy_sleep(10,5)
@@ -8379,11 +8374,6 @@ async def lvl_handler(event):
             awaiting_stamina = False
     if 'Your result on the battlefield:' in event.raw_text:
         await client11.forward_messages(control_siegfried, event.message)     
-
-@client11.on(events.NewMessage(chats=CHAT_WARS, incoming = True))
-async def report_handler(event):
-    if 'Encounter:' in event.raw_text:
-        await client11.forward_messages(control_lancer, event.message)           
 
 @client11.on(events.NewMessage(chats= MONSTERS_NOT_FOUND, incoming=True, pattern='You met some hostile creatures'))
 async def mob_handler(event):
@@ -8489,16 +8479,16 @@ async def monsters(event):
 
 @aiocron.crontab(cwc.minutes_after_war(5,1))
 async def start_quest():
-   global queste
-   queste = True
+   global quest12
+   quest12 = True
    await tools.noisy_sleep(200,20)
    await client12.send_message(CHAT_WARS, "🗺Quests")
 
 # Auto quests  #
 @client12.on(events.NewMessage(chats=CHAT_WARS, incoming=True))
 async def chatwars_handler(event):
-   global queste
-   if queste:
+   global quest12
+   if quest12:
 # Perceptive quests #
         if re.search(i, event.raw_text):
            await tools.noisy_sleep(10,5)
@@ -8582,12 +8572,7 @@ async def lvl_handler(event):
         stamina = stamina_match.group(1)
         tired_dict['me_stamina'] = stamina
     if 'Your result on the battlefield:' in event.raw_text:
-        await client12.forward_messages(control_tiredKn, event.message)     
-
-@client12.on(events.NewMessage(chats=CHAT_WARS, incoming = True))
-async def report_handler(event):
-    if 'Encounter:' in event.raw_text:
-        await client12.forward_messages(control_tiredKn, event.message)           
+        await client12.forward_messages(control_tiredKn, event.message)              
 
 @client12.on(events.NewMessage(chats= MONSTERS_NOT_FOUND, incoming=True, pattern='You met some hostile creatures'))
 async def mob_handler(event):
