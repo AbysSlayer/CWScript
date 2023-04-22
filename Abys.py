@@ -8635,7 +8635,7 @@ async def start_script():
     await client12.send_message(MONSTERS_NOT_FOUND, "/me")
 
 client.start()
-clientb.start()
+#clientb.start()
 clientc.start()
 clientd.start()
 #cliente.start()
